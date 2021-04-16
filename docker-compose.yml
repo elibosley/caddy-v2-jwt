@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        CADDY_VERSION: "2.3.0"
+    image: caddy-custom
+    container_name: caddy
+    ports:
+      - 80:80
+      - 443:443
+      - 9180:9180
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    env_file: ./.env
