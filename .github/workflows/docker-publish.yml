@@ -48,6 +48,8 @@ jobs:
           cache-to: type=gha,mode=max
       - name: Verify Caddy and custom modules
         run: scripts/smoke-test.sh caddy-custom:verify
+      - name: Verify authorization behavior
+        run: python3 tests/auth_check.py caddy-custom:verify
       - name: Registry login
         if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
         uses: docker/login-action@v4
