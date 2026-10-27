@@ -97,7 +97,7 @@ try:
     # Bounded readiness for this newly created local test container.
     for n in range(20):
         try: request('/user');break
-        except (urllib.error.URLError, http.client.RemoteDisconnected):
+        except (urllib.error.URLError, http.client.RemoteDisconnected, ConnectionResetError):
             if n==19:raise
             time.sleep(.2)
     results = {}
